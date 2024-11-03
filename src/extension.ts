@@ -49,9 +49,6 @@ export function activate(context: vscode.ExtensionContext) {
 		  };
 		});
 
-		
-  
-  
 		// Step 6: Render the template
 		const contextData = {
 			directoryName: path.basename(workspaceFolder),
