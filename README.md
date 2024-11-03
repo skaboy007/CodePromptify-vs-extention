@@ -1,71 +1,181 @@
-# CodePromptify README
+CodePromptify
+Generate structured prompts from your codebase directly within Visual Studio Code.
 
-This is the README for your extension "CodePromptify". After writing up a brief description, we recommend including the following sections.
+Table of Contents
+Introduction
+Features
+Installation
+Usage
+Configuration
+Example
+Contributing
+License
+Introduction
+CodePromptify is a Visual Studio Code extension that allows you to generate structured prompts from your codebase. It gathers file contents from your project, filters them based on specified patterns, and compiles them into a customizable prompt using a template. This is especially useful for creating summaries, documentation, or preparing code snippets for AI language models.
 
-## Features
+Features
+File Content Gathering: Collects contents from all files in your project directory.
+Pattern Filtering: Includes or excludes files based on glob patterns.
+Custom Templates: Uses Handlebars templates for prompt customization.
+Token Counting: Calculates the token count of the generated prompt using GPT-3 tokenization.
+Clipboard Integration: Copies the generated prompt to the clipboard for easy sharing.
+In-Editor Display: Opens the generated prompt in a new editor tab within VS Code.
+Line Numbers: Optionally includes line numbers in code snippets.
+Code Blocks: Wraps code snippets in markdown code blocks for better readability.
+Installation
+Install via VS Code Marketplace:
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Open Visual Studio Code.
+Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window or by pressing Ctrl+Shift+X.
+Search for CodePromptify.
+Click Install on the extension named CodePromptify.
+Manual Installation:
 
-For example if there is an image subfolder under your extension project workspace:
+Download the latest .vsix file from the Releases page.
+In VS Code, go to the Extensions view.
+Click on the three-dot menu at the top-right corner and select Install from VSIX....
+Select the downloaded .vsix file to install.
+Usage
+Open Your Project:
 
-\!\[feature X\]\(images/feature-x.png\)
+Ensure you have a workspace folder open in VS Code containing the code you want to generate a prompt from.
+Run CodePromptify Command:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Open the Command Palette by pressing Ctrl+Shift+P (Cmd+Shift+P on macOS).
+Type CodePromptify: Generate Prompt and select it.
+View the Generated Prompt:
 
-## Requirements
+A new editor tab will open displaying the generated prompt.
+The prompt is also copied to your clipboard for convenience.
+Token Count Notification:
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+After the prompt is generated, a notification will display the total token count.
+Configuration
+CodePromptify offers several configuration options to customize its behavior. You can access these settings in VS Code's settings under Extensions > CodePromptify.
 
-## Extension Settings
+Settings
+Include Patterns (codepromptify.includePatterns):
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Type: array of string
+Default: ["**/*.js", "**/*.ts", "**/*.py"]
+Description: Glob patterns of files to include.
+Exclude Patterns (codepromptify.excludePatterns):
 
-For example:
+Type: array of string
+Default: ["**/node_modules/**", "**/.git/**"]
+Description: Glob patterns of files to exclude.
+Template Content (codepromptify.templateContent):
 
-This extension contributes the following settings:
+Type: string
+Default:
+handlebars
+Copy code
+# Codebase: {{directoryName}}
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+{{#each files}}
+### {{path}}
+{{#if ../useCodeblock}}
+{{{content}}}
+bash
+Copy code
+{{else}}
+{{{content}}}
+{{/if}}
 
-## Known Issues
+{{/each}}
+```
+Description: Handlebars template used to format the generated prompt.
+Use Codeblock (codepromptify.useCodeblock):
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Type: boolean
+Default: true
+Description: Wrap code snippets inside markdown code blocks.
+Line Numbers (codepromptify.lineNumbers):
 
-## Release Notes
+Type: boolean
+Default: false
+Description: Include line numbers in code snippets.
+How to Configure
+Open Settings:
 
-Users appreciate release notes as you update your extension.
+Go to File > Preferences > Settings (Code > Preferences > Settings on macOS).
+Search for CodePromptify:
 
-### 1.0.0
+Type codepromptify in the search bar to filter settings.
+Adjust Settings:
 
-Initial release of ...
+Modify the settings as per your requirements.
+Example
+Sample Template
+handlebars
+Copy code
+# Project: {{directoryName}}
 
-### 1.0.1
+{{#each files}}
+## {{path}}
+\`\`\`
+{{{content}}}
+\`\`\`
 
-Fixed issue #.
+{{/each}}
 
-### 1.1.0
+_Total Token Count: {{tokenCount}}_
+Sample Output
+shell
+Copy code
+# Project: MyAwesomeApp
 
-Added features X, Y, and Z.
+## src/index.js
+javascript
+Copy code
+console.log('Hello, World!');
+shell
+Copy code
 
----
+## src/utils/helper.js
+javascript
+Copy code
+export function add(a, b) {
+  return a + b;
+}
+mathematica
+Copy code
 
-## Following extension guidelines
+_Total Token Count: 45_
+Contributing
+Contributions are welcome! If you have ideas for improvements or find a bug, please open an issue or submit a pull request.
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Steps to Contribute
+Fork the Repository:
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+Click on the Fork button at the top of the repository page.
+Clone Your Fork:
 
-## Working with Markdown
+bash
+Copy code
+git clone https://github.com/your-username/CodePromptify.git
+Create a New Branch:
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+bash
+Copy code
+git checkout -b feature/your-feature-name
+Make Your Changes.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+Commit and Push:
 
-## For more information
+bash
+Copy code
+git add .
+git commit -m "Description of your changes"
+git push origin feature/your-feature-name
+Submit a Pull Request:
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Go to the original repository and click on Pull Requests.
+Click on New Pull Request and select your branch to merge.
+License
+This project is licensed under the MIT License.
 
-**Enjoy!**
+Acknowledgments
+Inspired by the original CodePromptify utility tool.
+Thanks to all contributors and users for their support.
+Enjoy using CodePromptify! If you find this extension helpful, please consider giving it a star on GitHub or leaving a review on the VS Code Marketplace.
