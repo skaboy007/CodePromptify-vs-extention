@@ -1,8 +1,8 @@
 out
 dist
-node_modules/
-.vscode-test/
-*.vsix
+node_modules/*
+.vscode-test/*
+*.vsix*
 out/
 .env
 .DS_Store
@@ -17,3 +17,4 @@ coverage/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+node_modules
