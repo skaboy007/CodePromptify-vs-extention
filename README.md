@@ -1,6 +1,7 @@
 # CodePromptify VS extention
 
 Generate structured prompts from your codebase directly within Visual Studio Code.
+[Link to the extention in the marketplace](https://marketplace.visualstudio.com/items?itemName=EduardD.codepromptify-vscode-extension)
 
 ## Table of Contents
 - [Introduction](#introduction)
