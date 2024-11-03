@@ -3,7 +3,7 @@
   "repository": {"type": "git", "url": "https://github.com/skaboy007/CodePromptify-vs-extention"},
   "displayName": "CodePromptify",
   "description": "About",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "icon": "icon.png",
   "publisher": "EduardD",
   "engines": {
