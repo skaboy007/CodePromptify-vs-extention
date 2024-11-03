@@ -1,5 +1,5 @@
 {
-  "name": "CodePromptify",
+  "name": "codepromptify",
   "displayName": "CodePromptify",
   "description": "About",
   "version": "0.0.1",
@@ -14,10 +14,54 @@
   "contributes": {
     "commands": [
       {
-        "command": "CodePromptify.helloWorld",
-        "title": "Hello World"
+        "command": "codepromptify.generatePrompt",
+        "title": "CodePromptify: Generate Prompt"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "CodePromptify Configuration",
+      "properties": {
+        "codepromptify.includePatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/*.js",
+            "**/*.ts",
+            "**/*.py"
+          ],
+          "description": "Glob patterns to include."
+        },
+        "codepromptify.excludePatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/node_modules/**",
+            "**/.git/**"
+          ],
+          "description": "Glob patterns to exclude."
+        },
+        "codepromptify.templateContent": {
+          "type": "string",
+          "default": "# Codebase: {{directoryName}}\n\n{{#each files}}\n### {{path}}\n{{#if codeblock}}\n\\`\\`\\`\n{{{content}}}\n\\`\\`\\`\n{{else}}\n{{{content}}}\n{{/if}}\n{{/each}}\n",
+          "description": "Handlebars template for the prompt."
+        },
+        "codepromptify.useCodeblock": {
+          "type": "boolean",
+          "default": true,
+          "description": "Wrap code inside markdown code blocks."
+        },
+        "codepromptify.lineNumbers": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include line numbers in code blocks."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -28,14 +72,17 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.95.0",
     "@types/mocha": "^10.0.9",
     "@types/node": "20.x",
+    "@types/vscode": "^1.95.0",
     "@typescript-eslint/eslint-plugin": "^8.10.0",
     "@typescript-eslint/parser": "^8.7.0",
-    "eslint": "^9.13.0",
-    "typescript": "^5.6.3",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.13.0",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "gpt-3-encoder": "^1.1.4"
   }
 }
