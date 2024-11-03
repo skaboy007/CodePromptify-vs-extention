@@ -1,5 +1,5 @@
 {
-  "name": "codepromptify vscode extension",
+  "name": "codepromptify-vscode-extension",
   "repository": {"type": "git", "url": "https://github.com/skaboy007/CodePromptify-vs-extention"},
   "displayName": "CodePromptify",
   "description": "About",
