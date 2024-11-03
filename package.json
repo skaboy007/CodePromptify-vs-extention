@@ -4,6 +4,7 @@
   "description": "About",
   "version": "0.0.1",
   "icon": "icon.png",
+  "publisher": "EduardD",
   "engines": {
     "vscode": "^1.95.0"
   },
