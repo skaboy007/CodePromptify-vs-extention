@@ -161,7 +161,7 @@ Contributions are welcome! If you have ideas for improvements or find a bug, ple
 
 2. **Clone Your Fork**:
    ```bash
-   git clone https://github.com/your-username/CodePromptify.git
+   git clone https://github.com/skaboy007/CodePromptify-vs-extention.git
    ```
 
 3. **Create a New Branch**:
@@ -188,7 +188,7 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-- Inspired by the original CodePromptify utility tool
+- Inspired by the original [CodePromptify](https://github.com/skaboy007/CodePromptify) utility tool that was inspired by [code2prompt](https://github.com/mufeedvh/code2prompt)
 - Thanks to all contributors and users for their support
 
 *Enjoy using CodePromptify! If you find this extension helpful, please consider giving it a star on GitHub or leaving a review on the VS Code Marketplace.*
